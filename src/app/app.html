@@ -1,11 +1,22 @@
 <header class="site-header">
-  <a class="brand" routerLink="/" aria-label="Amecon home">
-    <img src="/images/amecon-logo.png" alt="" />
-  </a>
-  <nav aria-label="Main navigation">
-    <a [routerLink]="['/']" fragment="collections">Collections</a>
-    <a [routerLink]="[]" fragment="contact">Contact</a>
-  </nav>
+  <div class="header-top">
+    <a class="brand" routerLink="/" aria-label="Amecon home" (click)="menuOpen.set(false)">
+      <img src="/images/amecon-logo-gold.png" alt="" width="1774" height="887" />
+    </a>
+    <div class="header-contact">
+      <a class="header-quote" href="https://wa.me/8801715090328?text=Hello%20AMECON%2C%20I%20would%20like%20to%20request%20a%20quote.">Request a Quote</a>
+      <a class="header-phone" href="tel:+8801715090328">+880 1715-090328</a>
+    </div>
+  </div>
+  <div class="header-navigation" (keydown.escape)="closeMenu(menuToggle)">
+    <button #menuToggle class="menu-toggle" type="button" aria-controls="main-navigation"
+            [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())">Menu <span aria-hidden="true">{{ menuOpen() ? '−' : '+' }}</span></button>
+    <nav id="main-navigation" aria-label="Main navigation" [class.is-open]="menuOpen()">
+      <a routerLink="/" fragment="collections" (click)="menuOpen.set(false)">Collections</a>
+      <a routerLink="/collections/honour-boards" (click)="menuOpen.set(false)">Honour Boards</a>
+      <a [routerLink]="[]" fragment="contact" (click)="menuOpen.set(false)">Contact</a>
+    </nav>
+  </div>
 </header>
 
 <router-outlet />
