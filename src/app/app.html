@@ -1,45 +1,14 @@
 <header class="site-header">
-  <a class="brand" href="/" aria-label="AMECON home">AMECON</a>
+  <a class="brand" routerLink="/" aria-label="AMECON home">AMECON</a>
   <nav aria-label="Main navigation">
-    <a href="#collections">Collections</a>
-    <a href="#contact">Contact</a>
+    <a [routerLink]="['/']" fragment="collections">Collections</a>
+    <a [routerLink]="[]" fragment="contact">Contact</a>
   </nav>
 </header>
 
-<main>
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-copy">
-      <p class="eyebrow">Made in Dhaka since 1983</p>
-      <h1 id="hero-title">Custom Crests, Trophies &amp; Honour Boards</h1>
-      <p>For corporate events, sports clubs, schools, and institutions.</p>
-      <div class="actions">
-        <a class="button primary" href="#collections">Explore Collections</a>
-        <a class="button secondary"
-           href="https://wa.me/8801715090328?text=Hello%20AMECON%2C%20I%20would%20like%20to%20request%20a%20quote.">
-          Request a Quote
-        </a>
-      </div>
-    </div>
-  </section>
+<router-outlet />
 
-  <section class="collections" id="collections" aria-labelledby="collections-title">
-    <h2 id="collections-title">Explore Our Collections</h2>
-    <div class="collection-grid">
-      <article>
-        <h3>Award Crests</h3>
-        <p>Crystal, metal, and wooden designs for corporate and personal recognition.</p>
-      </article>
-      <article>
-        <h3>Trophies</h3>
-        <p>Custom trophies for tournaments, ceremonies, and special events.</p>
-      </article>
-      <article>
-        <h3>Honour Boards</h3>
-        <p>Wood, glass, and mixed-material boards for schools, clubs, and institutions.</p>
-      </article>
-    </div>
-  </section>
-</main>
+
 
 <footer id="contact">
   <strong>AMECON Showroom</strong>

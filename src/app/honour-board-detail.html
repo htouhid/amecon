@@ -1,0 +1,37 @@
+<main class="catalog product-detail">
+  <a routerLink="/collections/honour-boards" class="back-link">← Back to Honour Boards</a>
+  <section aria-label="Honour Board product details" [attr.aria-busy]="loading()">
+    @if (loading()) {
+      <p role="status" class="catalog-state">Loading product…</p>
+    } @else if (error()) {
+      <div role="alert" class="catalog-state">
+        <h1>Unable to load product</h1>
+        <p>{{ error() }}</p>
+        <button class="button primary" type="button" (click)="loadProduct()">Try again</button>
+      </div>
+    } @else if (product(); as item) {
+      <div class="product-layout">
+        <div class="product-photo">
+          @if (!photoMissing()) {
+            <img [src]="photoUrl(item)" [alt]="item.name" (error)="photoMissing.set(true)" />
+          } @else {
+            <p role="status">Product photo coming soon</p>
+          }
+        </div>
+        <div class="product-copy">
+          <p class="eyebrow">Honour Boards · AMECON</p>
+          <h1>{{ item.name }}</h1>
+          <p class="product-code">Product code: {{ item.code }}</p>
+          <div class="actions">
+            <a class="button primary" [href]="quoteUrl(item)">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div role="status" class="catalog-state">
+        <h1>Product not found</h1>
+        <p>This Honour Board is unavailable. Browse our Honour Boards collection to find another product.</p>
+      </div>
+    }
+  </section>
+</main>

@@ -1,0 +1,38 @@
+<main class="catalog">
+  <a routerLink="/" fragment="collections" class="back-link">← All collections</a>
+  <p class="eyebrow">Crafted for lasting recognition</p>
+  <h1>Honour Boards</h1>
+  <p>Wood, glass, and mixed-material boards for schools, clubs, and institutions.</p>
+
+  <section aria-label="Honour Boards catalog" [attr.aria-busy]="loading()">
+    @if (loading()) {
+      <p role="status" class="catalog-state">Loading Honour Boards…</p>
+    } @else if (error()) {
+      <div role="alert" class="catalog-state">
+        <p>{{ error() }}</p>
+        <button class="button primary" type="button" (click)="loadProducts()">Try again</button>
+      </div>
+    } @else if (products().length === 0) {
+      <p role="status" class="catalog-state">No Honour Boards are listed yet. Contact our showroom to discuss a custom board.</p>
+    } @else {
+      <div class="collection-grid product-grid">
+        @for (product of products(); track product.code) {
+          <article>
+            <p class="product-code">{{ product.code }}</p>
+            <h2>
+              @if (product.slug) {
+                <a [routerLink]="['/collections/honour-boards', product.slug]">{{ product.name }}</a>
+              } @else {
+                {{ product.name }}
+              }
+            </h2>
+            @if (product.slug) {
+              <a class="collection-link" [routerLink]="['/collections/honour-boards', product.slug]">View product →</a>
+            }
+            <a class="button primary catalog-quote" [href]="quoteUrl(product)">Request a Quote</a>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</main>
