@@ -15,7 +15,7 @@ describe('App', () => {
   it('renders the shared navigation', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.brand')?.textContent).toContain('AMECON');
+    expect(fixture.nativeElement.querySelector('.brand')?.getAttribute('aria-label')).toBe('Amecon home');
   });
 
   it('renders the homepage and its Honour Boards route link', async () => {
